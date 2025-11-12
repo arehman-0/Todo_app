@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.todoapp.controller.MainController"
+            stylesheets="@../css/styles.css">
+
+    <!-- LEFT SIDEBAR -->
+    <left>
+        <VBox styleClass="sidebar" prefWidth="280" spacing="0">
+            <!-- Sidebar Header -->
+            <HBox styleClass="sidebar-header" alignment="CENTER_LEFT" spacing="10">
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+                <Label text="My Lists" styleClass="sidebar-title"/>
+            </HBox>
+
+            <!-- Lists Container -->
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                        styleClass="sidebar-scroll">
+                <VBox fx:id="sidebarListsContainer" spacing="2">
+                    <padding>
+                        <Insets top="0" right="10" bottom="10" left="10"/>
+                    </padding>
+                </VBox>
+            </ScrollPane>
+
+            <!-- Add List Button -->
+            <HBox styleClass="sidebar-footer" alignment="CENTER_LEFT">
+                <padding>
+                    <Insets top="15" right="15" bottom="15" left="15"/>
+                </padding>
+                <Button fx:id="addListButton"
+                        text="New List"
+                        styleClass="new-list-button"
+                        onAction="#handleAddList"
+                        maxWidth="Infinity"
+                        HBox.hgrow="ALWAYS"/>
+            </HBox>
+        </VBox>
+    </left>
+
+    <!-- MAIN CONTENT AREA -->
+    <center>
+        <VBox spacing="0">
+            <!-- Header -->
+            <HBox styleClass="content-header" alignment="CENTER_LEFT" spacing="15">
+                <padding>
+                    <Insets top="30" right="30" bottom="20" left="30"/>
+                </padding>
+                <VBox spacing="4">
+                    <Label fx:id="listTitleLabel" text="Tasks" styleClass="content-title"/>
+                    <Label fx:id="taskCountLabel" text="0 tasks" styleClass="task-count-label"/>
+                </VBox>
+            </HBox>
+
+            <!-- Add Task Input -->
+            <HBox styleClass="add-task-container" alignment="CENTER_LEFT" spacing="10">
+                <padding>
+                    <Insets top="0" right="30" bottom="20" left="30"/>
+                </padding>
+                <TextField fx:id="newTaskField"
+                           promptText="Add a task"
+                           styleClass="new-task-field"
+                           onAction="#handleAddTask"
+                           HBox.hgrow="ALWAYS"/>
+                <Button text="Add"
+                        styleClass="add-task-button"
+                        onAction="#handleAddTask"/>
+            </HBox>
+
+            <!-- Tasks List -->
+            <HBox VBox.vgrow="ALWAYS">
+                <ScrollPane fx:id="taskScrollPane"
+                            fitToWidth="true"
+                            styleClass="tasks-scroll"
+                            HBox.hgrow="ALWAYS">
+                    <VBox fx:id="tasksContainer" spacing="0">
+                        <padding>
+                            <Insets top="0" right="30" bottom="30" left="30"/>
+                        </padding>
+                    </VBox>
+                </ScrollPane>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>
